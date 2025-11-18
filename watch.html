@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Watch | We Bomma</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  />
+</head>
+<body>
+  <header class="navbar">
+    <a href="index.html" class="logo">We Bomma</a>
+    <div class="search-container">
+      <input type="search" placeholder="Search films, directors, and genres..." />
+      <i class="fas fa-search"></i>
+    </div>
+    <nav class="main-nav">
+      <a href="index.html">Explore</a>
+      <a href="upload.html" class="btn-primary">Upload</a>
+      <button class="profile-btn"><i class="fas fa-user-circle"></i> Profile</button>
+    </nav>
+  </header>
+
+  <main class="container watch-layout">
+    <!-- Left: main video -->
+    <section>
+      <div class="video-wrapper">
+        <video id="main-player" controls poster="">
+          <source src="" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <div class="video-details">
+        <h1 id="video-title">Loading...</h1>
+        <div class="video-stats">
+          <span id="video-genre-tag"></span> •
+          <span id="video-uploader"></span>
+        </div>
+        <hr />
+        <div class="uploader-info">
+          <div class="avatar-placeholder"></div>
+          <div class="uploader-text">
+            <h4 id="video-uploader-label">Channel</h4>
+            <span class="badge">Curated</span>
+          </div>
+          <button class="subscribe-btn">Subscribe</button>
+        </div>
+        <p id="video-desc">
+          <!-- Description from script.js (video.desc) will appear here -->
+        </p>
+      </div>
+
+      <section class="comments-section">
+        <h2>Comments</h2>
+        <div class="comment">
+          <strong>Demo User</strong>
+          <span class="time">2h ago</span>
+          <p>A sample classic from the We Bomma archive!</p>
+        </div>
+      </section>
+    </section>
+
+    <!-- Right: recommended list -->
+    <aside>
+      <h3>Up next</h3>
+      <div id="recommended-list"></div>
+    </aside>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
