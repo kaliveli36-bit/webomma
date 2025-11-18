@@ -1,17 +1,17 @@
 // =========================================================
-// GLOBAL DATA (Used for Homepage Filtering Demo)
+// GLOBAL DATA (Movies shown on homepage + used on watch page)
 // =========================================================
 const allVideos = [
-    // This is the structure you need to follow:
     { 
         id: 1, 
-        title: "RRR", // <= CHANGE THIS
-        genre: "Silent Film", 
-        year: 2023, 
-        uploader: "Film Archive", 
-        image: 'images/RRR.png' // <= CHANGE THIS TO YOUR IMAGE PATH
-        videoUrl: 'https://drive.google.com/uc?export=download&id=170D3UL3r70aKYUqLCIbc6fmqRjLxFqle',
-        desc: 'A powerful story of rise , Roar, Revolt.'
+        title: "RRR",
+        genre: "Silent Film",
+        year: 2023,
+        uploader: "Film Archive",
+        image: "images/RRR.png",
+        // 👇 Your Google Drive video for RRR
+        videoUrl: "https://drive.google.com/uc?export=download&id=170D3UL3r70aKYUqLCIbc6fmqRjLxFqle",
+        desc: "RRR – your first movie hosted on Google Drive."
     },
     { 
         id: 2, 
@@ -19,7 +19,10 @@ const allVideos = [
         genre: "Horror", 
         year: 2022, 
         uploader: "UGC Curators", 
-        image: 'images/KGF 1.png' 
+        image: "images/KGF 1.png",
+        // TODO: put your Google Drive link here when ready
+        videoUrl: "",
+        desc: "KGF 1 – add your own description and videoUrl when ready."
     }, 
     { 
         id: 3, 
@@ -27,25 +30,31 @@ const allVideos = [
         genre: "Action", 
         year: 2022, 
         uploader: "UGC Curators", 
-        image: 'images/Salaar.png' 
+        image: "images/Salaar.png",
+        // TODO: put your Google Drive link here when ready
+        videoUrl: "",
+        desc: "Salaar – add your own description and videoUrl when ready."
     },
 
-    // ADD YOUR NEW VIDEOS HERE:
+    // Example extra slot – edit or remove as you like
     {
-        id: 6, // Make sure the ID is unique!
+        id: 6,
         title: "My New Movie Title",
-        genre: "Sci-Fi", // Must match one of the categories: All, Classic, Horror, Sci-Fi, Silent Film [cite: 5]
+        genre: "Sci-Fi",
         year: 2025,
         uploader: "My Channel",
-        image: 'images/mynewmovie.jpg' // This must match the file in your folder!
+        image: "images/mynewmovie.jpg",
+        videoUrl: "",
+        desc: "Describe your new movie here."
     }
 ];
+
 // =========================================================
 // HOMEPAGE LOGIC
 // =========================================================
 function initializeHomepage() {
-    const videoGrid = document.querySelector('.video-grid');
-    const filterContainer = document.querySelector('.category-filters');
+    const videoGrid = document.querySelector(".video-grid");
+    const filterContainer = document.querySelector(".category-filters");
 
     if (!videoGrid) return; 
 
@@ -58,117 +67,135 @@ function initializeHomepage() {
                     <p class="metadata">${video.year} | ${video.uploader}</p>
                 </div>
             </a>
-        `).join('');
+        `).join("");
     }
 
     renderVideos(allVideos);
 
     if (filterContainer) {
-        filterContainer.addEventListener('click', (e) => {
-            if (e.target.classList.contains('chip')) {
-                filterContainer.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
-                e.target.classList.add('active');
-                const genre = e.target.getAttribute('data-genre');
-                renderVideos(genre === 'All' ? allVideos : allVideos.filter(v => v.genre === genre));
+        filterContainer.addEventListener("click", (e) => {
+            if (e.target.classList.contains("chip")) {
+                filterContainer.querySelectorAll(".chip").forEach(c => c.classList.remove("active"));
+                e.target.classList.add("active");
+                const genre = e.target.getAttribute("data-genre");
+                renderVideos(genre === "All" ? allVideos : allVideos.filter(v => v.genre === genre));
             }
         });
     }
 }
 
 // =========================================================
-// WATCH PAGE LOGIC (NEW)
+// WATCH PAGE LOGIC
 // =========================================================
 function initializeWatchPage() {
-    const player = document.getElementById('main-player');
+    const player = document.getElementById("main-player");
     if (!player) return; // Exit if not on watch page
 
     // 1. Get ID from URL (e.g., watch.html?id=2)
     const urlParams = new URLSearchParams(window.location.search);
-    const videoId = parseInt(urlParams.get('id'));
+    const videoId = parseInt(urlParams.get("id"));
 
     // 2. Find Video Data
     const video = allVideos.find(v => v.id === videoId);
 
     if (video) {
-        // Update UI
+        // Update page title
         document.title = `${video.title} | We Bomma`;
-        document.getElementById('video-title').textContent = video.title;
-        document.getElementById('video-uploader').textContent = video.uploader;
-        document.getElementById('video-genre-tag').textContent = video.genre;
-        document.getElementById('video-desc').textContent = video.desc;
-        
-       // Use your Google Drive video
-if (video.videoUrl) {
-    player.src = video.videoUrl;
-} else {
-    // fallback demo video if no URL is set
-    player.src = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-}
-player.poster = video.image;
 
-        // Populate Sidebar with other videos
+        // Update text fields
+        const titleEl = document.getElementById("video-title");
+        const uploaderEl = document.getElementById("video-uploader");
+        const genreTagEl = document.getElementById("video-genre-tag");
+        const descEl = document.getElementById("video-desc");
+        const uploaderLabelEl = document.getElementById("video-uploader-label");
+
+        if (titleEl) titleEl.textContent = video.title;
+        if (uploaderEl) uploaderEl.textContent = video.uploader;
+        if (genreTagEl) genreTagEl.textContent = video.genre;
+        if (descEl) descEl.textContent = video.desc || "No description provided.";
+        if (uploaderLabelEl) uploaderLabelEl.textContent = video.uploader;
+
+        // 3. Set video source (Google Drive or fallback)
+        if (video.videoUrl && video.videoUrl.trim() !== "") {
+            player.src = video.videoUrl;
+        } else {
+            // Fallback demo video if no URL set
+            player.src = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+        }
+        player.poster = video.image;
+
+        // 4. Populate sidebar recommendations
         const recommendations = allVideos.filter(v => v.id !== videoId);
-        const sidebar = document.getElementById('recommended-list');
-        sidebar.innerHTML = recommendations.map(rec => `
-            <a href="watch.html?id=${rec.id}" class="side-video-card">
-                <img src="${rec.image}" alt="thumb">
-                <div class="side-video-info">
-                    <h4>${rec.title}</h4>
-                    <p>${rec.uploader}</p>
-                </div>
-            </a>
-        `).join('');
+        const sidebar = document.getElementById("recommended-list");
+        if (sidebar) {
+            sidebar.innerHTML = recommendations.map(rec => `
+                <a href="watch.html?id=${rec.id}" class="side-video-card">
+                    <img src="${rec.image}" alt="${rec.title} thumbnail">
+                    <div class="side-video-info">
+                        <h4>${rec.title}</h4>
+                        <p>${rec.uploader}</p>
+                    </div>
+                </a>
+            `).join("");
+        }
     } else {
-        document.querySelector('.container').innerHTML = "<h1>Video not found.</h1>";
+        const container = document.querySelector(".container");
+        if (container) container.innerHTML = "<h1>Video not found.</h1>";
     }
 }
 
 // =========================================================
-// UPLOAD LOGIC (Unchanged)
+// UPLOAD PAGE LOGIC (unchanged from your original)
 // =========================================================
 function initializeUploadForm() {
-    const form = document.getElementById('upload-form');
+    const form = document.getElementById("upload-form");
     if (!form) return; 
 
-    const steps = form.querySelectorAll('.upload-step');
-    const stepIndicators = form.querySelectorAll('.step');
-    const publishBtn = document.getElementById('publish-btn');
-    const certifyCheckbox = document.getElementById('certify');
-    const fileInput = document.getElementById('video-file');
-    const progressBar = document.getElementById('upload-progress');
-    const fileNameDisplay = document.getElementById('file-name-display');
+    const steps = form.querySelectorAll(".upload-step");
+    const stepIndicators = form.querySelectorAll(".step");
+    const publishBtn = document.getElementById("publish-btn");
+    const certifyCheckbox = document.getElementById("certify");
+    const fileInput = document.getElementById("video-file");
+    const progressBar = document.getElementById("upload-progress");
+    const fileNameDisplay = document.getElementById("file-name-display");
 
     let currentStep = 0;
 
     function showStep(index) {
-        steps.forEach((s, i) => s.style.display = i === index ? 'block' : 'none');
-        stepIndicators.forEach((s, i) => s.classList.toggle('active', i === index));
+        steps.forEach((s, i) => s.style.display = i === index ? "block" : "none");
+        stepIndicators.forEach((s, i) => s.classList.toggle("active", i === index));
         currentStep = index;
     }
 
-    if(fileInput) {
-        fileInput.addEventListener('change', () => {
-            if(fileInput.files.length > 0) {
-                fileNameDisplay.textContent = `Selected: ${fileInput.files[0].name}`;
-                let width = 0;
-                const interval = setInterval(() => {
-                    if (width >= 100) clearInterval(interval);
-                    else { width += 10; progressBar.style.width = width + '%'; }
-                }, 100);
+    if (fileInput) {
+        fileInput.addEventListener("change", () => {
+            if (fileInput.files.length > 0) {
+                if (fileNameDisplay) {
+                    fileNameDisplay.textContent = `Selected: ${fileInput.files[0].name}`;
+                }
+                if (progressBar) {
+                    let width = 0;
+                    const interval = setInterval(() => {
+                        if (width >= 100) clearInterval(interval);
+                        else { width += 10; progressBar.style.width = width + "%"; }
+                    }, 100);
+                }
             }
         });
     }
 
-    form.addEventListener('click', (e) => {
-        if (e.target.classList.contains('btn-next')) showStep(currentStep + 1);
-        if (e.target.classList.contains('btn-prev')) showStep(currentStep - 1);
+    form.addEventListener("click", (e) => {
+        if (e.target.classList.contains("btn-next")) showStep(currentStep + 1);
+        if (e.target.classList.contains("btn-prev")) showStep(currentStep - 1);
     });
 
-    form.addEventListener('change', () => {
-        if (currentStep === 2) publishBtn.disabled = !certifyCheckbox.checked;
+    form.addEventListener("change", () => {
+        if (currentStep === 2 && publishBtn && certifyCheckbox) {
+            publishBtn.disabled = !certifyCheckbox.checked;
+        }
     });
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener("submit", (e) => {
         e.preventDefault();
         alert("Success! Film submitted.");
         form.reset();
@@ -178,10 +205,11 @@ function initializeUploadForm() {
     showStep(0);
 }
 
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
+// =========================================================
+// Initialize all pages
+// =========================================================
+document.addEventListener("DOMContentLoaded", () => {
     initializeHomepage();
     initializeUploadForm();
     initializeWatchPage();
-
 });
