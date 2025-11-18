@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Film | We Bomma</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <a href="/" class="logo">We Bomma</a>
+        <nav class="main-nav">
+            <a href="index.html">Explore</a>
+            <a href="upload.html" class="btn-primary">Upload</a>
+            <button class="profile-btn"><i class="fas fa-user-circle"></i> Profile</button>
+        </nav>
+    </header>
+
+    <main class="upload-container container">
+        <h1>Upload a Film to We Bomma</h1>
+        <form id="upload-form">
+            <div class="step-indicator">
+                <span class="step active">1. File</span>
+                <span class="step">2. Details</span>
+                <span class="step">3. Legal</span>
+            </div>
+
+            <section class="upload-step" id="step-file">
+                <h2>Step 1: Upload Video File</h2>
+                <div class="drag-drop-area">
+                    <p><i class="fas fa-cloud-upload-alt"></i> Drag and drop your MP4 file here, or click to browse.</p>
+                    <input type="file" id="video-file" required accept="video/mp4">
+                    <div class="progress-bar-container"><div class="progress-bar" style="width: 0%;"></div></div>
+                </div>
+                <button type="button" class="btn-next">Next: Add Details</button>
+            </section>
+
+            <section class="upload-step" id="step-details" style="display: none;">
+                <h2>Step 2: Film Details</h2>
+                <label for="title">Film Title:</label>
+                <input type="text" id="title" required placeholder="e.g., Night of the Living Dead (1968)">
+                
+                <label for="description">Synopsis / Description:</label>
+                <textarea id="description" rows="5" required placeholder="A brief description of the film for viewers and SEO."></textarea>
+                
+                <label for="thumbnail">Custom Thumbnail (Recommended 16:9):</label>
+                <input type="file" id="thumbnail" accept="image/*">
+                
+                <div class="button-group">
+                    <button type="button" class="btn-prev">Back</button>
+                    <button type="button" class="btn-next">Next: Legal</button>
+                </div>
+            </section>
+
+            <section class="upload-step" id="step-legal" style="display: none;">
+                <h2>Step 3: Legal Verification</h2>
+                <div class="legal-box">
+                    <p><strong>License Type:</strong></p>
+                    <input type="radio" name="license" value="PublicDomain" id="pd-license" required> 
+                    <label for="pd-license">Public Domain (No copyright restrictions)</label><br>
+                    
+                    <input type="radio" name="license" value="CreativeCommons" id="cc-license"> 
+                    <label for="cc-license">Creative Commons / Other Open License</label><br>
+                    
+                    <label for="source-link">Mandatory Public Domain Source Link:</label>
+                    <input type="url" id="source-link" placeholder="Link to the definitive source (e.g., archive.org)" required>
+
+                    <div class="compliance-checkbox">
+                        <input type="checkbox" id="certify" required>
+                        <label for="certify">I certify that I have the legal right to distribute this content.</label>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button type="button" class="btn-prev">Back</button>
+                    <button type="submit" class="btn-primary" id="publish-btn" disabled>Publish Film</button>
+                </div>
+            </section>
+        </form>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
