@@ -85,9 +85,12 @@ function initializeHomepage() {
 // =========================================================
 // WATCH PAGE LOGIC
 // =========================================================
+// =========================================================
+// WATCH PAGE LOGIC (iframe + Google Drive preview)
+// =========================================================
 function initializeWatchPage() {
-    const player = document.getElementById("main-player");
-    if (!player) return; // Exit if not on watch page
+    const frame = document.getElementById("video-frame");
+    if (!frame) return; // Exit if not on watch page
 
     // 1. Get ID from URL (e.g., watch.html?id=2)
     const urlParams = new URLSearchParams(window.location.search);
@@ -100,7 +103,7 @@ function initializeWatchPage() {
         // Update page title
         document.title = `${video.title} | We Bomma`;
 
-        // Update text fields
+        // Update text fields safely
         const titleEl = document.getElementById("video-title");
         const uploaderEl = document.getElementById("video-uploader");
         const genreTagEl = document.getElementById("video-genre-tag");
@@ -110,17 +113,16 @@ function initializeWatchPage() {
         if (titleEl) titleEl.textContent = video.title;
         if (uploaderEl) uploaderEl.textContent = video.uploader;
         if (genreTagEl) genreTagEl.textContent = video.genre;
-        if (descEl) descEl.textContent = video.desc || "No description provided.";
+        if (descEl) descEl.textContent = video.desc || "";
         if (uploaderLabelEl) uploaderLabelEl.textContent = video.uploader;
 
-        // 3. Set video source (Google Drive or fallback)
-        if (video.videoUrl && video.videoUrl.trim() !== "") {
-            player.src = video.videoUrl;
+        // 3. Set iframe source
+        if (video.embedUrl && video.embedUrl.trim() !== "") {
+            frame.src = video.embedUrl;
         } else {
-            // Fallback demo video if no URL set
-            player.src = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+            // Fallback: a public sample YouTube video embed
+            frame.src = "https://www.youtube.com/embed/aqz-KE-bpKQ";
         }
-        player.poster = video.image;
 
         // 4. Populate sidebar recommendations
         const recommendations = allVideos.filter(v => v.id !== videoId);
@@ -141,6 +143,7 @@ function initializeWatchPage() {
         if (container) container.innerHTML = "<h1>Video not found.</h1>";
     }
 }
+
 
 // =========================================================
 // UPLOAD PAGE LOGIC (unchanged from your original)
@@ -211,6 +214,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeUploadForm();
     initializeWatchPage();
 });
+
 
 
 
