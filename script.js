@@ -9,8 +9,8 @@ const allVideos = [
         year: 2023,
         uploader: "Film Archive",
         image: "images/RRR.png",
-        // 👇 Your Google Drive video for RRR
-        videoUrl: "https://drive.google.com/uc?export=download&id=1nQGeNz2Ckz1UP80Fcp8NquPiUBLP0UyA",
+        // 👇 Google Drive EMBED url (works in iframe)
+        embedUrl: "https://drive.google.com/file/d/1nQGeNz2Ckz1UP80Fcp8NquPiUBLP0UyA/preview",
         desc: "RRR – your first movie hosted on Google Drive."
     },
     { 
@@ -20,9 +20,8 @@ const allVideos = [
         year: 2022, 
         uploader: "UGC Curators", 
         image: "images/KGF 1.png",
-        // TODO: put your Google Drive link here when ready
-        videoUrl: "",
-        desc: "KGF 1 – add your own description and videoUrl when ready."
+        embedUrl: "",      // later: add another /preview link
+        desc: "KGF 1 – add your own description and embedUrl here."
     }, 
     { 
         id: 3, 
@@ -31,12 +30,10 @@ const allVideos = [
         year: 2022, 
         uploader: "UGC Curators", 
         image: "images/Salaar.png",
-        // TODO: put your Google Drive link here when ready
-        videoUrl: "",
-        desc: "Salaar – add your own description and videoUrl when ready."
+        embedUrl: "",
+        desc: "Salaar – add your own description and embedUrl here."
     },
 
-    // Example extra slot – edit or remove as you like
     {
         id: 6,
         title: "My New Movie Title",
@@ -44,10 +41,11 @@ const allVideos = [
         year: 2025,
         uploader: "My Channel",
         image: "images/mynewmovie.jpg",
-        videoUrl: "",
+        embedUrl: "",
         desc: "Describe your new movie here."
     }
 ];
+
 
 // =========================================================
 // HOMEPAGE LOGIC
@@ -213,6 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeUploadForm();
     initializeWatchPage();
 });
+
 
 
 
