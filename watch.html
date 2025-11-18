@@ -30,10 +30,13 @@
     <!-- LEFT: main video + details -->
     <section>
       <div class="video-wrapper">
-        <video id="main-player" controls poster="">
-          <source src="" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
+        <!-- 👇 we now use an iframe, not <video> -->
+        <iframe
+          id="video-frame"
+          src=""
+          allowfullscreen
+          allow="autoplay; encrypted-media"
+        ></iframe>
       </div>
 
       <div class="video-details">
@@ -51,9 +54,7 @@
           </div>
           <button class="subscribe-btn">Subscribe</button>
         </div>
-        <p id="video-desc">
-          <!-- Description from script.js (video.desc) will appear here -->
-        </p>
+        <p id="video-desc"></p>
       </div>
 
       <section class="comments-section">
