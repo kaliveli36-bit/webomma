@@ -10,6 +10,8 @@ const allVideos = [
         year: 2023, 
         uploader: "Film Archive", 
         image: 'images/RRR.png' // <= CHANGE THIS TO YOUR IMAGE PATH
+        videoUrl: 'https://drive.google.com/uc?export=download&id=170D3UL3r70aKYUqLCIbc6fmqRjLxFqle',
+        desc: 'A powerful story of rise , Roar, Revolt.'
     },
     { 
         id: 2, 
@@ -95,10 +97,14 @@ function initializeWatchPage() {
         document.getElementById('video-genre-tag').textContent = video.genre;
         document.getElementById('video-desc').textContent = video.desc;
         
-        // Use a sample open source video for DEMO purposes
-        // (In a real app, this would be video.videoUrl)
-        player.src = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
-        player.poster = video.image;
+       // Use your Google Drive video
+if (video.videoUrl) {
+    player.src = video.videoUrl;
+} else {
+    // fallback demo video if no URL is set
+    player.src = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4";
+}
+player.poster = video.image;
 
         // Populate Sidebar with other videos
         const recommendations = allVideos.filter(v => v.id !== videoId);
@@ -177,4 +183,5 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeHomepage();
     initializeUploadForm();
     initializeWatchPage();
+
 });
