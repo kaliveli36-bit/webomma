@@ -1,494 +1,292 @@
 /* =========================================================
-   BASE STYLES & RESET
+   GLOBAL STYLES
 ========================================================= */
-:root {
-    --primary-color: #E50914; /* Netflix Red / Bomma Red */
-    --secondary-color: #2e7a3a;
-    --background-dark: #141414;
-    --text-light: #f5f5f5;
-    --card-bg: #222222;
-    --border-light: #444444;
-}
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--background-dark);
-    color: var(--text-light);
-    line-height: 1.6;
+  margin: 0;
+  background-color: #111;
+  color: #fff;
+  font-family: Arial, sans-serif;
 }
 
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+a {
+  text-decoration: none;
+  color: inherit;
 }
 
 /* =========================================================
-   NAVIGATION (NAVBAR)
+   NAVBAR
 ========================================================= */
 .navbar {
-    background-color: #000;
-    padding: 15px 30px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+  background-color: #000;
+  padding: 15px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
 }
 
 .logo {
-    font-size: 28px;
-    font-weight: bold;
-    color: var(--primary-color);
-    text-decoration: none;
+  color: #ff0000;
+  font-size: 26px;
+  font-weight: bold;
 }
 
 .search-container {
-    position: relative;
-    display: flex;
-    align-items: center;
+  position: relative;
 }
 
 .search-container input {
-    padding: 8px 30px 8px 15px;
-    border: 1px solid var(--border-light);
-    border-radius: 20px;
-    background-color: var(--card-bg);
-    color: var(--text-light);
-    transition: all 0.3s;
-    width: 250px;
+  width: 400px;
+  padding: 10px;
+  border-radius: 30px;
+  border: none;
+  outline: none;
+  background-color: #222;
+  color: white;
 }
 
-.search-container input:focus {
-    border-color: var(--primary-color);
-    outline: none;
-    width: 300px;
+.search-container i {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: gray;
 }
 
-.search-container .fa-search {
-    position: absolute;
-    right: 10px;
-    color: var(--border-light);
-}
-
-.main-nav a, .profile-btn {
-    color: var(--text-light);
-    text-decoration: none;
-    padding: 10px 15px;
-    margin-left: 10px;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.main-nav a:hover, .profile-btn:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+.main-nav a,
+.profile-btn {
+  color: #fff;
+  margin-left: 20px;
+  font-size: 14px;
 }
 
 .btn-primary {
-    background-color: var(--primary-color);
-    color: white !important;
-    font-weight: bold;
-    padding: 8px 20px;
-    text-transform: uppercase;
+  padding: 8px 15px;
+  background: #ff0000;
+  border-radius: 8px;
+  transition: 0.2s;
 }
 
 .btn-primary:hover {
-    background-color: #c00c14;
+  background: #b70000;
+}
+
+.profile-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.profile-btn:hover {
+  color: #ccc;
 }
 
 /* =========================================================
-   HOMEPAGE COMPONENTS
+   HERO SECTION
 ========================================================= */
-.hero-banner {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), var(--background-dark)), url('https://via.placeholder.com/1200x400?text=Cinematic+Background');
-    background-size: cover;
-    padding: 80px 40px;
-    text-align: center;
-    border-radius: 8px;
-    margin-bottom: 30px;
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(145deg, #1a1a1a, #000);
+  border-radius: 10px;
+  margin: 30px auto;
+  max-width: 1200px;
 }
 
-.hero-banner h1 {
-    font-size: 48px;
-    margin-bottom: 10px;
-    color: white;
+.hero h1 {
+  font-size: 42px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
-.hero-banner p {
-    font-size: 20px;
-    color: rgba(255, 255, 255, 0.8);
+.hero p {
+  color: gray;
 }
 
+/* =========================================================
+   CATEGORY FILTERS
+========================================================= */
 .category-filters {
-    display: flex;
-    overflow-x: auto;
-    padding-bottom: 15px;
-    margin-bottom: 30px;
+  margin-top: 20px;
+  text-align: center;
 }
 
 .chip {
-    background-color: var(--card-bg);
-    color: var(--text-light);
-    border: 1px solid var(--border-light);
-    padding: 8px 15px;
-    border-radius: 20px;
-    margin-right: 10px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.2s;
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 7px;
+  border-radius: 20px;
+  background-color: #333;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
-.chip.active, .chip:hover {
-    background-color: var(--primary-color);
-    border-color: var(--primary-color);
+.chip:hover,
+.chip.active {
+  background-color: #ff0000;
 }
 
-.content-feed h2 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    color: white;
-}
-
+/* =========================================================
+   VIDEO GRID (HOMEPAGE)
+========================================================= */
 .video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 25px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
 }
 
 .video-card {
-    background-color: var(--card-bg);
-    border-radius: 8px;
-    overflow: hidden;
-    transition: transform 0.3s, box-shadow 0.3s;
-    cursor: pointer;
+  background: #222;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s;
 }
 
 .video-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
 }
 
 .video-card img {
-    width: 100%;
-    height: 150px; /* Standard 16:9 thumbnail ratio */
-    object-fit: cover;
-    display: block;
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
 }
 
 .video-card h3 {
-    font-size: 18px;
-    padding: 10px 15px 5px;
+  margin: 10px;
+  font-size: 16px;
 }
 
-.video-card .metadata {
-    color: var(--border-light);
-    font-size: 14px;
-    padding: 0 15px 15px;
+.metadata {
+  color: gray;
+  font-size: 13px;
+  margin: 5px 10px 10px;
 }
 
 /* =========================================================
-   UPLOAD FORM STYLES
-========================================================= */
-.upload-container {
-    padding-top: 50px;
-}
-
-.upload-container h1 {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-#upload-form {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: var(--card-bg);
-    padding: 30px;
-    border-radius: 10px;
-}
-
-/* Step Indicator */
-.step-indicator {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 30px;
-}
-
-.step {
-    flex-grow: 1;
-    text-align: center;
-    padding: 10px 0;
-    border-bottom: 2px solid var(--border-light);
-    color: var(--border-light);
-    font-weight: bold;
-}
-
-.step.active {
-    border-bottom-color: var(--primary-color);
-    color: var(--primary-color);
-}
-
-/* Form Fields */
-.upload-step h2 {
-    font-size: 22px;
-    margin-bottom: 20px;
-    color: white;
-}
-
-label {
-    display: block;
-    margin-top: 15px;
-    margin-bottom: 5px;
-    font-weight: bold;
-    color: var(--text-light);
-}
-
-input[type="text"], input[type="url"], textarea {
-    width: 100%;
-    padding: 12px;
-    background-color: var(--background-dark);
-    border: 1px solid var(--border-light);
-    color: var(--text-light);
-    border-radius: 5px;
-}
-
-textarea {
-    resize: vertical;
-}
-
-.drag-drop-area {
-    border: 2px dashed var(--border-light);
-    padding: 40px;
-    text-align: center;
-    cursor: pointer;
-    border-radius: 8px;
-    transition: border-color 0.3s;
-}
-
-.drag-drop-area:hover {
-    border-color: var(--secondary-color);
-}
-
-.drag-drop-area p {
-    font-size: 16px;
-    margin-bottom: 10px;
-}
-
-/* Legal Box Specifics */
-.legal-box {
-    border: 1px solid var(--border-light);
-    padding: 20px;
-    border-radius: 8px;
-    margin-top: 20px;
-}
-
-.legal-box input[type="radio"] {
-    margin-right: 5px;
-}
-
-.compliance-checkbox {
-    margin-top: 20px;
-    border-top: 1px dashed var(--border-light);
-    padding-top: 15px;
-}
-
-/* Button Group */
-.button-group {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-}
-
-.btn-next, .btn-prev {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background-color 0.3s;
-}
-
-.btn-next {
-    background-color: var(--secondary-color);
-    color: white;
-}
-
-.btn-next:hover {
-    background-color: #245e2e;
-}
-
-.btn-prev {
-    background-color: var(--border-light);
-    color: white;
-}
-
-.btn-prev:hover {
-    background-color: #666;
-}
-
-#publish-btn:disabled {
-    background-color: #6d0a10;
-    cursor: not-allowed;
-}
-
-#publish-btn:not(:disabled):hover {
-    background-color: #c00c14;
-}
-/* =========================================================
-   WATCH PAGE STYLES
+   WATCH PAGE LAYOUT
 ========================================================= */
 .watch-layout {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    gap: 30px;
-    margin-top: 20px;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 20px;
+  padding: 20px;
 }
 
-@media (max-width: 768px) {
-    .watch-layout {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Video Player */
 .video-wrapper {
-    width: 100%;
-    background: #000;
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-    margin-bottom: 20px;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
-video {
-    width: 100%;
-    height: auto;
-    display: block;
-    max-height: 80vh;
-}
+/* >>> THIS IS THE IMPORTANT PART <<< */
 .video-wrapper iframe {
-    width: 100%;
-    height: 80vh;   /* adjust if too tall/short */
-    border: none;
-    display: block;
+  width: 100%;
+  height: 80vh;  /* adjust if needed */
+  border: none;
+  display: block;
 }
 
-/* Video Details */
+/* DETAILS UNDER VIDEO */
 .video-details h1 {
-    font-size: 24px;
-    color: white;
-    margin-bottom: 5px;
+  margin-bottom: 5px;
 }
 
 .video-stats {
-    color: #aaa;
-    font-size: 14px;
-    margin-bottom: 15px;
-}
-
-hr {
-    border: 0;
-    border-top: 1px solid #333;
-    margin: 15px 0;
-}
-
-.uploader-info {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
+  color: gray;
 }
 
 .avatar-placeholder {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: var(--primary-color);
-    margin-right: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #444;
+  margin-right: 10px;
 }
 
-.uploader-text h4 {
-    margin: 0;
-    color: white;
-}
-
-.badge {
-    display: inline-block;
-    background: #333;
-    padding: 2px 8px;
-    border-radius: 4px;
-    font-size: 12px;
-    color: #ccc;
-    margin-top: 2px;
+.uploader-info {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
 }
 
 .subscribe-btn {
-    margin-left: auto;
-    background: #cc0000;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    border-radius: 4px;
-    cursor: pointer;
-    text-transform: uppercase;
-    font-weight: bold;
+  margin-left: auto;
+  background: #ff0000;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: white;
 }
 
-/* Comments */
-.comments-section {
-    margin-top: 40px;
+.subscribe-btn:hover {
+  background: #b70000;
 }
 
-.comment {
-    background: #1a1a1a;
-    padding: 15px;
-    border-radius: 5px;
-    margin-bottom: 15px;
-}
-
-.comment .time {
-    font-size: 12px;
-    color: #777;
-    margin-left: 10px;
-}
-
-/* Sidebar Recommendations */
+/* =========================================================
+   SIDEBAR (UP NEXT)
+========================================================= */
 .side-video-card {
-    display: flex;
-    margin-bottom: 15px;
-    text-decoration: none;
-    color: white;
-    transition: background 0.2s;
-    padding: 5px;
-    border-radius: 5px;
-}
-
-.side-video-card:hover {
-    background: #222;
+  display: flex;
+  margin-bottom: 15px;
+  cursor: pointer;
 }
 
 .side-video-card img {
-    width: 140px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 4px;
-    margin-right: 10px;
+  width: 100px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-right: 10px;
 }
 
 .side-video-info h4 {
-    font-size: 14px;
-    margin-bottom: 5px;
-    line-height: 1.3;
+  font-size: 14px;
 }
 
 .side-video-info p {
-    font-size: 12px;
-    color: #aaa;
+  font-size: 12px;
+  color: gray;
+}
 
+/* =========================================================
+   COMMENTS SECTION
+========================================================= */
+.comments-section {
+  margin-top: 30px;
+}
+
+.comment {
+  background: #222;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.comment strong {
+  font-size: 14px;
+  margin-right: 10px;
+}
+
+.comment .time {
+  font-size: 11px;
+  color: gray;
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 900px) {
+  .watch-layout {
+    grid-template-columns: 1fr;
+  }
 }
