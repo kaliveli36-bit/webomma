@@ -10,7 +10,7 @@ const allVideos = [
         uploader: "Film Archive",
         image: "images/RRR.png",
         // Google Drive EMBED url (preview) – works inside iframe
-        embedUrl: "https://drive.google.com/file/d/1nQGeNz2Ckz1UP80Fcp8NquPiUBLP0UyA/preview",
+        embedUrl: "https://www.youtube.com/embed/f_vbAtFSEc0",
         desc: "RRR – your first movie hosted on Google Drive."
     },
     { 
@@ -214,3 +214,4 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeUploadForm();
     initializeWatchPage();
 });
+
