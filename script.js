@@ -2,16 +2,15 @@
 // GLOBAL DATA (Movies used on homepage + watch page)
 // =========================================================
 const allVideos = [
-    { 
-        id: 1, 
-        title: "RRR",
-        genre: "Silent Film",
-        year: 2023,
-        uploader: "Film Archive",
-        image: "images/RRR.png",
-        // Google Drive EMBED url (preview) – works inside iframe
-        embedUrl: "https://www.youtube.com/embed/f_vbAtFSEc0",
-        desc: "RRR – your first movie hosted on Google Drive."
+  {
+    id: 1,
+    title: "RRR",
+    genre: "Action",
+    year: 2022,
+    uploader: "Film Archive",
+    image: "images/RRR.png",
+    embedUrl: "https://www.youtube.com/embed/fP1UmcHwAK0",  // <-- NEW WORKING LINK!
+    desc: "Streaming from YouTube – now it works!"
     },
     { 
         id: 2, 
@@ -214,4 +213,5 @@ document.addEventListener("DOMContentLoaded", () => {
     initializeUploadForm();
     initializeWatchPage();
 });
+
 
